@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from '../router'
 
 Vue.use(Vuex)
 
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     },
     SOCKET_enemyRoll (context, resp) {
       context.commit('setEnemyRoll', resp)
+    },
+    SOCKET_isRoomFull (context, resp) {
+      router.push('/full')
     }
   },
   modules: {
