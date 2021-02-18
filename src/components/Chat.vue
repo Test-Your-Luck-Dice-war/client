@@ -7,7 +7,7 @@
       <button @click.prevent="battle">Battle !!!</button>
       <h1>Your Luck : {{diceResult}}</h1>
       <h1 v-if="battleResult">{{battleResult}}</h1>
-      <h1 v-if="battleResult">Enemy Luck : {{enemyResult}}</h1>
+      <h1 v-if="battleResult">Enemy Luck : {{enemyDice}}</h1>
   </div>
 </template>
 
@@ -16,28 +16,38 @@ export default {
   data () {
     return {
       messageClient: '',
-      serverMessage: '',
-      diceResult: '',
-      enemyResult: '',
-      battleResult: '',
-      enemyid: ''
+      battleResult: ''
     }
   },
   sockets: {
     connect () {
       console.log('----------- connected')
+    }
+    // serverMessage (resp) {
+    //   this.serverMessage = resp.message
+    //   // console.log(message)
+    // },
+    // diceRoll (resp) {
+    //   this.diceResult = resp
+    // },
+    // enemyRoll (resp) {
+    //   console.log('Enemy is Here <<<<<<<<<<')
+    //   this.enemyResult = resp.dice
+    //   this.enemyid = resp.id
+    // }
+  },
+  computed: {
+    enemy () {
+      return this.$store.state.enemy
     },
-    serverMessage (resp) {
-      this.serverMessage = resp.message
-      // console.log(message)
+    serverMessage () {
+      return this.$store.state.serverMessage
     },
-    diceRoll (resp) {
-      this.diceResult = resp
+    diceResult () {
+      return this.$store.state.diceResult
     },
-    enemyRoll (resp) {
-      console.log('Enemy is Here <<<<<<<<<<')
-      this.enemyResult = resp.dice
-      this.enemyid = resp.id
+    enemyDice () {
+      return this.enemy.dice
     }
   },
   methods: {
@@ -50,11 +60,11 @@ export default {
       // this.$socket.emit('newBattle')
     },
     compareResult () {
-      if (this.enemyResult && this.diceResult) {
-        if (this.enemyResult < this.diceResult) {
-          this.battleResult = `You Win against ${this.enemyid}`
-        } else if (this.enemyResult > this.diceResult) {
-          this.battleResult = `You lose against ${this.enemyid}`
+      if (this.enemy.dice && this.diceResult) {
+        if (this.enemy.dice < this.diceResult) {
+          this.battleResult = `You Win against ${this.enemy.id}`
+        } else if (this.enemy.dice > this.diceResult) {
+          this.battleResult = `You lose against ${this.enemy.id}`
         } else {
           this.battleResult = 'ITS A DRAW !!'
         }
@@ -66,7 +76,7 @@ export default {
     this.$socket.emit('connected', { name: 'Nama goes here' })
   },
   watch: {
-    enemyResult (val) {
+    enemyDice (val) {
       this.compareResult()
     },
     diceResult (val) {
