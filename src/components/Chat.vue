@@ -8,6 +8,7 @@
       <h1>Your Luck : {{diceResult}}</h1>
       <h1 v-if="battleResult">{{battleResult}}</h1>
       <h1 v-if="battleResult">Enemy Luck : {{enemyDice}}</h1>
+      <button @click.prevent="logout">Logout</button>
   </div>
 </template>
 
@@ -51,6 +52,9 @@ export default {
     }
   },
   methods: {
+    logout () {
+      this.$socket.emit('disconnected')
+    },
     sendMessage () {
       console.log('masukk')
       this.$socket.emit('newMessage', { message: this.messageClient })
@@ -69,11 +73,25 @@ export default {
           this.battleResult = 'ITS A DRAW !!'
         }
       }
+    },
+    onClosing () {
+      // alert('test')
+      this.$socket.emit('disconnected')
     }
+  },
+  mounted () {
+    this.$socket.emit('connected', { name: 'Nama goes here' })
   },
   created () {
     console.log('Created goes here <<<<<<<<<<<<<<<<<')
-    this.$socket.emit('connected', { name: 'Nama goes here' })
+    // window.addEventListener('beforeunload', this.onClosing())
+    // // console.log(document.addEventListener)
+    window.addEventListener('onbeforeunload', (event) => {
+      // Cancel the event as stated by the standard.
+      event.preventDefault()
+      // Older browsers supported custom message
+      event.returnValue = 'coba'
+    })
   },
   watch: {
     enemyDice (val) {
