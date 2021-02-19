@@ -1,7 +1,7 @@
 <template>
-  <div style="background: blue; height: 65vh;">
+  <div style="">
     <div style="display: flex; margin-top: 40px; justify-content: center;">
-      <button @click.prevent="battle" style="margin: 0 40px">Battle !!!</button>
+      <button @click.prevent="battle" style="margin: 0 40px" class="border border-10 border-bg-red-500">Battle !!!</button>
       <button @click.prevent="logout" style="margin: 0 40px">Logout</button>
     </div>
     <h1>{{username}} VS {{enemyName}}</h1>
