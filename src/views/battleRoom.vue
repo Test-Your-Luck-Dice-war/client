@@ -1,17 +1,53 @@
 <template>
-  <div style="">
-    <div style="display: flex; margin-top: 40px; justify-content: center;">
-      <button @click.prevent="battle" style="margin: 0 40px" class="border border-10 border-bg-red-500">Battle !!!</button>
-      <button @click.prevent="logout" style="margin: 0 40px">Logout</button>
+  <div class="w-full bg-gray-900 flex h-screen">
+    <div class="flex flex-col w-96">
+      <div class="bg-gray-300 px-4 pt-5 h-full ">
+          <div v-if="username" class="border rounded shadow-sm bg-white mb-4">
+            <div class="p-3 flex">
+                <div class="pr-4">
+                  <img src="https://avatars.dicebear.com/api/avataaars/2323.svg" alt="" class="rounded-full h-20 w-20 flex items-center justify-center bg-gray-900">
+                </div>
+                <div class="pt-2">
+                  {{username}}
+                </div>
+            </div>
+          </div>
+          <div v-if="enemyName" class="border rounded shadow-sm bg-white mb-4">
+            <div class="p-3 flex">
+                <div class="pr-4">
+                  <img src="https://avatars.dicebear.com/api/avataaars/te2387.svg" alt="" class="rounded-full h-20 w-20 flex items-center justify-center bg-gray-900">
+                </div>
+                <div class="pt-2">
+                  {{enemyName}}
+                </div>
+            </div>
+          </div>
+      </div>
     </div>
-    <h1>{{username}} VS {{enemyName}}</h1>
-    <h2>Your Luck : {{diceResult}}</h2>
-    <h2 v-if="battleResult">{{battleResult}}</h2>
-    <h2 v-if="battleResult">Enemy Luck : {{enemyDice}}</h2>
-    <!-- <button class="btn btn-primary btn-sm" @click.prevent=""><span class="fa fa-play-circle-o"></span></button> -->
-    <!-- <audio controls autoplay class="hidden">
-          <source src="../assets/movie_1.mp3" type="audio/ogg">
-        </audio> -->
+    <div class="flex flex-col w-full">
+      <div class="bg-gray-900 h-full items-center">
+        <div class="px-8 py-4 pt-4">
+          <div class="border rounded shadow-sm bg-white border-gray-100">
+              <div class="p-3 flex flex-row pt-14 pb-14">
+                <button type="submit" @click.prevent="battle" class="block w-full max-w-xs mx-auto bg-green-600 text-white rounded-lg px-3 py-3 font-semibold">Batlle</button>
+                <button type="submit" @click.prevent="logout" class="block w-full max-w-xs mx-auto bg-green-600 text-white rounded-lg px-3 py-3 font-semibold">Logout</button>
+              </div>
+              <div class="p-3 text-center">
+              <div class="flex justify-center text-7xl">
+                <p class="px-5">{{username}}</p>
+                <p class="px-20">VS</p>
+                <p class="px-5">{{enemyName}}</p>
+              </div>
+              <div class="flex justify-center text-7xl pt-20 pb-20">
+                <p class="px-5" v-if="battleResult">{{battleResult}}</p>
+                <p class="px-5" v-if="battleResult">Enemy Luck : {{enemyDice}}</p>
+                <p class="px-5">Your luck : {{diceResult}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

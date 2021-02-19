@@ -42,11 +42,11 @@
     </div>
   </div> -->
   <!-- end join room  -->
-	<div class="w-full bg-gray-900 flex h-full">
+	<div class="w-full bg-gray-900 flex h-screen">
 		
 			<div class="flex flex-col w-96">
-				<div class="bg-gray-600 px-4 pt-5 h-full ">
-					<div class="border rounded shadow-sm  bg-white border-gray-100">
+				<div class="bg-gray-300 px-4 pt-5 h-full ">
+					<div class="border rounded shadow-sm bg-white mb-4">
 						<div class="p-3 flex">
 							<div class="pr-4">
 								<img src="https://avatars.dicebear.com/api/avataaars/tes.svg" alt="" class="rounded-full h-20 w-20 flex items-center justify-center bg-gray-900">
@@ -56,21 +56,55 @@
 							</div>
 						</div>
 					</div>
+					<div class="border rounded shadow-sm bg-white mb-4">
+						<div class="p-3 flex">
+							<div class="pr-4">
+								<img src="https://avatars.dicebear.com/api/avataaars/123.svg" alt="" class="rounded-full h-20 w-20 flex items-center justify-center bg-gray-900">
+							</div>
+							<div class="pt-2">
+								Name Player
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="flex flex-col w-full">
-				<div class="bg-blue-800 text-center h-full">
-					<div class="px-8 py-4">
-						<div class="border rounded shadow-sm  bg-white border-gray-100 " style="height: 20rem;">
-							<div class="p-3">
-								Game
+				<div class="bg-gray-800 h-full items-center">
+					<div class="px-8 py-4 pt-20">
+						<div class="border rounded shadow-sm bg-white border-gray-100">
+							<!-- <div class="p-5 bg-red-100 text-center">
+								<div class="mx-auto" style="text-align: center!important;">
+asdasdasd
+<img class="content-center justify-center text-center" src="dice.gif" style="text-align: center!important;">
+								</div>
+							</div>
+							<div class="p-3 text-center">
+								asd
+								
+							</div> -->
+							<div class="p-3 flex flex-row pt-14 pb-14">
+								<!-- <img src="dice.gif" alt="" class="object-center object-none"> -->
+								<button type="submit" @click.prevent="joinGame" class="block w-full max-w-xs mx-auto bg-green-600 text-white rounded-lg px-3 py-3 font-semibold">Batlle</button>
+								<button type="submit" @click.prevent="joinGame" class="block w-full max-w-xs mx-auto bg-green-600 text-white rounded-lg px-3 py-3 font-semibold">Logout</button>
+							</div>
+							<div class="p-3 text-center">
+								<!-- <img src="dice.gif" alt="" class="object-center object-none"> -->
+								<div class="flex justify-center text-7xl">
+									<p class="px-5">Player 1</p>
+									<p class="px-20">VS</p>
+									<p class="px-5">Player 2</p>
+								</div>
+								<div class="flex justify-center text-7xl pt-20 pb-20">
+									<p class="px-5">Test your luck : 4</p>
+								</div>
+
 							</div>
 						</div>
 					</div>
 					<div class="px-8 py-4">
-						<div class="border rounded shadow-sm bg-white border-gray-100 h-60">
-							<div class="p-3">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent laoreet diam risus, et vulputate mauris sagittis at.
+						<div class="border rounded shadow-sm bg-white border-gray-100 h-52">
+							<div class="px-5 py-5">
+								<input name="my-input" value="Hello world" class="bottom block h-full px-3 py-2 text-black placeholder-gray-400 transition duration-100 ease-in-out bg-white border border-gray-300 rounded shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed" type="text">
 							</div>
 						</div>
 					</div>
