@@ -11,7 +11,9 @@ export default new Vuex.Store({
     diceResult: '',
     enemy: {},
     enemyName: '',
-    inGame: false
+    inGame: false,
+    matchStatus: false,
+    enemyLeft: false
   },
   mutations: {
     serverMessage (state, payload) {
@@ -33,6 +35,12 @@ export default new Vuex.Store({
     },
     setInGame (state, payload) {
       state.inGame = payload
+    },
+    setMatchStatus (state, payload) {
+      state.matchStatus = payload
+    },
+    setEnemyLeft (state, payload) {
+      state.enemyLeft = payload
     }
   },
   actions: {
@@ -54,21 +62,26 @@ export default new Vuex.Store({
       context.commit('setEnemyName', resp.name)
     },
     SOCKET_enemyLeft (context) {
-      if (context.state.inGame && context.state.enemyName) {
+      if (context.state.inGame && context.state.enemyName && context.state.matchStatus) {
         Swal.fire('You Win !!')
           .then(() => {
             context.dispatch('setInGame', false)
             context.dispatch('resetGame')
+            context.dispatch('setEnemyLeft', true)
             router.push('/')
               .catch(() => {})
           })
       }
     },
     resetGame (context) {
+      context.dispatch('setInGame', false)
       context.commit('resetGame')
     },
     setInGame (context, payload) {
       context.commit('setInGame', payload)
+    },
+    setMatchStatus (context, payload) {
+      context.commit('setMatchStatus', payload)
     }
   },
   modules: {
